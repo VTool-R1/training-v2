@@ -1,0 +1,51 @@
+hydra:
+  searchpath:
+    - file://verl/trainer/config
+
+defaults:
+  - ppo_trainer
+  - _self_
+
+algorithm:
+  adv_estimator: grpo
+
+data:
+  max_prompt_length: 1024
+  max_response_length: 1024
+  train_batch_size: 256
+  return_raw_chat: True
+  return_multi_modal_inputs: False
+  image_key: images
+
+reward:
+  custom_reward_function:
+    path: pkg://recipe.vtool.vtool
+    name: compute_score
+  reward_manager:
+    source: importlib
+    name: VToolRewardManager
+    module:
+      path: pkg://recipe.vtool.vtool
+      name: VToolRewardManager
+
+actor_rollout_ref:
+  hybrid_engine: True
+  nccl_timeout: 86400000
+  actor:
+    strategy: fsdp2
+  rollout:
+    mode: async
+    name: vllm
+    n: 8
+    agent:
+      default_agent_loop: vtool_agent
+      agent_loop_config_path: recipe/vtool/agent.yaml
+    multi_turn:
+      format: hermes
+      tokenization_sanity_check_mode: disable
+      enable: True
+      max_user_turns: 3
+      max_assistant_turns: 3
+    enforce_eager: False
+    free_cache_engine: True
+
