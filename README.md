@@ -30,7 +30,7 @@ By default, the training script will attempt to connect to your vllm serve endpo
 
 You may either take advantage of your CPUs to host the LLM judge, or partition a small chunk of your GPU memory to host the LLM judge. 
 
-In addition, we provide hybrid solutions in the form of the load_balance.sh. You can then run both your CPU judge, as well as the small GPU judge and route them through the load balancer. Our ratio was tested for optimal performance on a GH100 node (4xH100).
+In addition, we provide hybrid solutions in the form of the load_balance.sh. You can then run both your CPU judge, as well as the small GPU judge and route them through the load balancer. Our ratio was tested for optimal performance on a GH200 superchip node (4xH100).
 
 ## Evaluation
 
