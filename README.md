@@ -6,6 +6,10 @@ It is implemented using the latest version of verl, commit 498c988ab7af49aa36c15
 
 The library is implemented using the asynchronous agent loop, allowing for max GPU utilization for mult-turn tool use.
 
+### Dataset
+
+All dataset available are on our hugging face page. You may find it [here](https://huggingface.co/datasets/VTOOL/Refocus_Chart)
+
 ## Training
 
 We implemented VTool-R1 in the form of a recipe, available in recipe/vtool
